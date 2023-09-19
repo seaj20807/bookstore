@@ -8,7 +8,7 @@ public class BookController {
 
     @RequestMapping("/index")
     public String index() {
-        return "This is the main page";
+        return "index"; // index.html
     }
 
 }
