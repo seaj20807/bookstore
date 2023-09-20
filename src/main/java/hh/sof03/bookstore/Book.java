@@ -21,12 +21,23 @@ public class Book {
     public Book() {
     }
 
+    public Book(String title, String author, Integer year, String isbn) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isbn = isbn;
+    }
+
     public Book(String title, String author, Integer year, String isbn, Double price) {
         this.title = title;
         this.author = author;
         this.year = year;
         this.isbn = isbn;
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -47,6 +58,10 @@ public class Book {
 
     public Double getPrice() {
         return price;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {
