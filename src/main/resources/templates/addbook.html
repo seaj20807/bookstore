@@ -4,6 +4,7 @@
 <head>
     <title>Bookstore</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 
 <body>
@@ -19,9 +20,9 @@
             <label for="year">Year:</label><br>
             <input type="text" id="year" th:field="*{year}" /><br>
             <br>
-            <input type="submit" value="Add"></input><br>
-            <a href="/booklist">To listing</a><br>
-            <a href="/index">Home</a><br>
+            <input type="submit" class="btn btn-success" value="Add"></input><br>
+            <a href="/booklist" class="btn btn-danger">To listing</a><br>
+            <a href="/index" class="btn btn-danger">Home</a><br>
         </form>
     </div>
 </body>
