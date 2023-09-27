@@ -11,22 +11,26 @@
     <h1>Books</h1>
     <table class="table table-striped">
         <tr>
+            <!-- <th>Id</th> -->
             <th>Author</th>
             <th>Title</th>
             <th>ISBN</th>
             <th>Year</th>
+            <th>Category</th>
         </tr>
         <tr th:each="book : ${books}">
+            <!-- <td th:text="${book.bookId}"></td> -->
             <td th:text="${book.author}"></td>
             <td th:text="${book.title}"></td>
             <td th:text="${book.isbn}"></td>
             <td th:text="${book.year}"></td>
-            <td><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-success">Edit</a></td>
+            <td th:text="${book.category.name}"></td>
+            <td><a th:href="@{/delete/{id}(id=${book.bookId})}" class="btn btn-danger">Delete</a></td>
+            <td><a th:href="@{/edit/{id}(id=${book.bookId})}" class="btn btn-success">Edit</a></td>
         </tr>
     </table>
     <a href="/addbook" class="btn btn-success">Add a book</a><br>
-    <a href="/index" class="btn btn-danger">Back</a><br>
+    <a href="/index" class="btn btn-danger">Home</a><br>
 </body>
 
 </html>

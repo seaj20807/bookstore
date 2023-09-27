@@ -10,7 +10,7 @@
 <body>
     <h1>Edit a book</h1>
     <div>
-        <form th:object="${book}" th:action="@{/save}" action="#" method="post">
+        <form th:object="${book}" th:action="@{/savebook}" action="#" method="post">
             <label for="bookId"></label>
             <input type="hidden" id="bookId" th:field="*{bookId}" class="form-control" />
             <label for="author">Author:</label><br>
@@ -21,10 +21,14 @@
             <input type="text" id="isbn" th:field="*{isbn}" /><br>
             <label for="year">Year:</label><br>
             <input type="text" id="year" th:field="*{year}" /><br>
-            <br>
-            <input type="submit" class="btn btn-success" value="Save"></input><br>
-            <a href="/booklist" class="btn btn-danger">To listing</a><br>
-            <a href="/index" class="btn btn-danger">Home</a><br>
+            <label for="categorylist">Category:</label><br>
+            <select id="categorylist" th:field="*{category}" class="form-control"><br>
+                <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.name}">
+                </option>
+                <br>
+                <input type="submit" class="btn btn-success" value="Save"></input><br>
+                <a href="/booklist" class="btn btn-danger">Back</a><br>
+                <a href="/index" class="btn btn-danger">Home</a><br>
         </form>
     </div>
 </body>

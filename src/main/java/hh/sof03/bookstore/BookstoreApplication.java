@@ -20,19 +20,6 @@ public class BookstoreApplication {
 	public CommandLineRunner bookDemo(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
 
-			log.info("Save a few books");
-			Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "1827184", 15.00);
-			Book book2 = new Book("The Lord of the Rings", "J.R.R. Tolkien", 1968, "1487587", 30.00);
-			Book book3 = new Book("The Way of Kings", "Brandon Sanderson", 2010, "978-0-7653-2635-5", 20.00);
-			bookRepository.save(book1);
-			bookRepository.save(book2);
-			bookRepository.save(book3);
-
-			log.info("List all books");
-			for (Book book : bookRepository.findAll()) {
-				log.info(book.toString());
-			}
-
 			log.info("Save a few categories");
 			Category category1 = new Category("Fantasy");
 			Category category2 = new Category("Sci-fi");
@@ -44,6 +31,19 @@ public class BookstoreApplication {
 			log.info("List all categories");
 			for (Category category : categoryRepository.findAll()) {
 				log.info(category.toString());
+			}
+
+			log.info("Save a few books");
+			Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "1827184", category1);
+			Book book2 = new Book("The Lord of the Rings", "J.R.R. Tolkien", 1968, "1487587", category1);
+			Book book3 = new Book("The Way of Kings", "Brandon Sanderson", 2010, "978-0-7653-2635-5", category1);
+			bookRepository.save(book1);
+			bookRepository.save(book2);
+			bookRepository.save(book3);
+
+			log.info("List all books");
+			for (Book book : bookRepository.findAll()) {
+				log.info(book.toString());
 			}
 
 		};
