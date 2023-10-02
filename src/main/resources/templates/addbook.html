@@ -19,14 +19,17 @@
             <input type="text" id="isbn" th:field="*{isbn}" /><br>
             <label for="year">Year:</label><br>
             <input type="text" id="year" th:field="*{year}" /><br>
-            <label for="categorylist">Category:</label><br>
-            <select id="categorylist" th:field="*{category}" class="form-control"><br>
+            <label for="categorylist">Category:</label>
+            <select id="categorylist" th:field="*{category}" class="form-control">
                 <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.name}">
                 </option>
                 <br>
                 <input type="submit" class="btn btn-success" value="Add"></input><br>
+                <br>
                 <a href="/booklist" class="btn btn-danger">Back</a><br>
+                <br>
                 <a href="/index" class="btn btn-danger">Home</a><br>
+                <br>
         </form>
     </div>
 </body>

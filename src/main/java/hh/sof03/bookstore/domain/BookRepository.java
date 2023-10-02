@@ -1,4 +1,4 @@
-package hh.sof03.bookstore;
+package hh.sof03.bookstore.domain;
 
 import org.springframework.data.repository.CrudRepository;
 

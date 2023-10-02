@@ -1,4 +1,4 @@
-package hh.sof03.bookstore;
+package hh.sof03.bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,6 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import hh.sof03.bookstore.domain.Book;
+import hh.sof03.bookstore.domain.BookRepository;
+import hh.sof03.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
