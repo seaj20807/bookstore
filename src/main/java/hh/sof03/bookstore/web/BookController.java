@@ -1,6 +1,7 @@
 package hh.sof03.bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,26 +22,26 @@ public class BookController {
     private CategoryRepository categoryRepository;
 
     // Kirjautuminen
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login"; // login.html
     }
 
     // Etusivu
-    @RequestMapping("/index")
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index() {
         return "index"; // index.html
     }
 
     // Listataan kaikki kirjat
-    @RequestMapping("/booklist")
+    @RequestMapping(value = "/booklist", method = RequestMethod.GET)
     public String bookList(Model model) {
         model.addAttribute("books", bookRepository.findAll());
         return "booklist"; // booklist.html
     }
 
     // Luodaan uusi kirja
-    @RequestMapping("/addbook")
+    @RequestMapping(value = "/addbook", method = RequestMethod.GET)
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
         model.addAttribute("categories", categoryRepository.findAll());
@@ -55,14 +56,15 @@ public class BookController {
     }
 
     // Poistetaan kirja tietokannasta
-    @RequestMapping("/delete/{bookId}")
+    @RequestMapping(value = "/delete/{bookId}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteBook(@PathVariable("bookId") Long bookId, Model model) {
         bookRepository.deleteById(bookId);
         return "redirect:/booklist"; // Uudelleenohjaus endpointiin ../booklist.html
     }
 
     // Muokataan olemassaolevaa kirjaa
-    @RequestMapping("/edit/{bookId}")
+    @RequestMapping(value = "/edit/{bookId}", method = RequestMethod.GET)
     public String editBook(@PathVariable("bookId") Long bookId, Model model) {
         model.addAttribute("book", bookRepository.findById(bookId));
         model.addAttribute("categories", categoryRepository.findAll());
