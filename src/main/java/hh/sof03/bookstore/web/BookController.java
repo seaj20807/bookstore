@@ -20,38 +20,49 @@ public class BookController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @RequestMapping("/index") // Etusivu
+    // Kirjautuminen
+    @RequestMapping("/login")
+    public String login() {
+        return "login"; // login.html
+    }
+
+    // Etusivu
+    @RequestMapping("/index")
     public String index() {
         return "index"; // index.html
     }
 
-    @RequestMapping("/booklist") // Listataan kaikki kirjat
+    // Listataan kaikki kirjat
+    @RequestMapping("/booklist")
     public String bookList(Model model) {
         model.addAttribute("books", bookRepository.findAll());
         return "booklist"; // booklist.html
     }
 
-    @RequestMapping("/addbook") // Luodaan uusi kirja
+    // Luodaan uusi kirja
+    @RequestMapping("/addbook")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
         model.addAttribute("categories", categoryRepository.findAll());
         return "addbook"; // addbook.html
     }
 
-    @RequestMapping(value = "/savebook", method = RequestMethod.POST) // Tallennetaan uusi kirja tai kirjan muokkaukset
-    // tietokantaan
+    // Tallennetaan uusi kirja tai kirjan muokkaukset tietokantaan
+    @RequestMapping(value = "/savebook", method = RequestMethod.POST)
     public String save(Book book) {
         bookRepository.save(book);
         return "redirect:/booklist"; // Uudelleenohjaus endpointiin ../booklist.html
     }
 
-    @RequestMapping("/delete/{bookId}") // Poistetaan kirja tietokannasta
+    // Poistetaan kirja tietokannasta
+    @RequestMapping("/delete/{bookId}")
     public String deleteBook(@PathVariable("bookId") Long bookId, Model model) {
         bookRepository.deleteById(bookId);
         return "redirect:/booklist"; // Uudelleenohjaus endpointiin ../booklist.html
     }
 
-    @RequestMapping("/edit/{bookId}") // Muokataan olemassaolevaa kirjaa
+    // Muokataan olemassaolevaa kirjaa
+    @RequestMapping("/edit/{bookId}")
     public String editBook(@PathVariable("bookId") Long bookId, Model model) {
         model.addAttribute("book", bookRepository.findById(bookId));
         model.addAttribute("categories", categoryRepository.findAll());

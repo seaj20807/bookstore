@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <title>Bookstore</title>
@@ -8,13 +8,16 @@
 </head>
 
 <body>
-    <h1>Welcome to the Bookstore!</h1>
+    <h1>Welcome to the Bookstore <span sec:authentication="name"></span>!</h1>
     <h2>Choose from the following options:</h2>
     <br>
     <a href="/booklist" class="btn btn-success">List all books</a><br>
     <br>
     <a href="/categorylist" class="btn btn-success">List all categories</a><br>
     <br>
+    <form th:action="@{/logout}" method="post">
+        <input class="btn btn-danger" type="submit" value="Log Out" />
+    </form>
 </body>
 
 </html>
