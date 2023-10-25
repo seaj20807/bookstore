@@ -14,7 +14,7 @@
             <label for="name">Name:</label><br>
             <input type="text" id="name" th:field="*{name}" /><br>
             <br>
-            <input type="submit" class="btn btn-success" value="Add"></input><br>
+            <input sec:authorize="hasAuthority('ADMIN')" type="submit" class="btn btn-success" value="Add"></input><br>
             <br>
             <a href="/categorylist" class="btn btn-danger">Back</a><br>
             <br>

@@ -53,6 +53,15 @@ public class Book {
         this.price = price;
     }
 
+    public Book(String title, String author, Integer year, String isbn, Double price, Category category) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.isbn = isbn;
+        this.price = price;
+        this.category = category;
+    }
+
     public Book(Long bookId, String title, String author, Integer year, String isbn, Double price, Category category) {
         this.bookId = bookId;
         this.title = title;

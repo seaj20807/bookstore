@@ -42,9 +42,9 @@ public class BookstoreApplication {
 			}
 
 			log.info("Save a few books");
-			Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "1827184", category1);
-			Book book2 = new Book("The Lord of the Rings", "J.R.R. Tolkien", 1968, "1487587", category1);
-			Book book3 = new Book("The Way of Kings", "Brandon Sanderson", 2010, "978-0-7653-2635-5", category1);
+			Book book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "1827184", 15.00, category1);
+			Book book2 = new Book("The Lord of the Rings", "J.R.R. Tolkien", 1968, "1487587", 30.00, category1);
+			Book book3 = new Book("The Way of Kings", "Brandon Sanderson", 2010, "978-0-7653-2635-5", 20.00, category1);
 			bookRepository.save(book1);
 			bookRepository.save(book2);
 			bookRepository.save(book3);

@@ -42,6 +42,7 @@ public class BookController {
 
     // Luodaan uusi kirja
     @RequestMapping(value = "/addbook", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
         model.addAttribute("categories", categoryRepository.findAll());
@@ -50,13 +51,14 @@ public class BookController {
 
     // Tallennetaan uusi kirja tai kirjan muokkaukset tietokantaan
     @RequestMapping(value = "/savebook", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String save(Book book) {
         bookRepository.save(book);
         return "redirect:/booklist"; // Uudelleenohjaus endpointiin ../booklist.html
     }
 
     // Poistetaan kirja tietokannasta
-    @RequestMapping(value = "/delete/{bookId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deletebook/{bookId}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('ADMIN')")
     public String deleteBook(@PathVariable("bookId") Long bookId, Model model) {
         bookRepository.deleteById(bookId);
@@ -65,6 +67,7 @@ public class BookController {
 
     // Muokataan olemassaolevaa kirjaa
     @RequestMapping(value = "/edit/{bookId}", method = RequestMethod.GET)
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String editBook(@PathVariable("bookId") Long bookId, Model model) {
         model.addAttribute("book", bookRepository.findById(bookId));
         model.addAttribute("categories", categoryRepository.findAll());
